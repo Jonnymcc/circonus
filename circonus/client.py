@@ -164,7 +164,7 @@ class CirconusClient(object):
 
     @with_common_tags
     @log_http_error
-    def create(self, resource_type, data):
+    def create(self, resource_type, data, params=None):
         """Create the resource type with ``data`` via :func:`requests.post`.
 
         :param str resource_type: The resource type to create.
@@ -172,7 +172,7 @@ class CirconusClient(object):
         :rtype: :class:`requests.Response`
 
         """
-        return requests.post(get_api_url(resource_type), data=json.dumps(data), headers=self.api_headers)
+        return requests.post(get_api_url(resource_type), data=json.dumps(data), headers=self.api_headers, params=params)
 
     def update_with_tags(self, cid, new_tags):
         """Update the resource at ``cid`` to have ``new_tags`` added to it via :func:`update`.
